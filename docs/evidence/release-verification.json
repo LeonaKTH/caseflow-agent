@@ -42,11 +42,18 @@
     "identity_tokens_absent_from_trace": true,
     "provider_requests": 0,
     "browser_clicks_tested_this_snapshot": false,
-    "linux_remote_ci": "not-verified"
+    "linux_remote_ci": "Ubuntu/Windows actual CI success; see remote_ci"
   },
   "upstream_license_preserved": true,
   "new_real_model_requests": 0,
   "raw_xml_logs_databases_published": false,
   "unrun_independent_tasks_published": false,
-  "remote_ci": "not-verified"
+  "remote_ci": {
+    "checked_commit": "59ff9e1e5cdfc2b6a5c39eae14c68f2a347a74f0",
+    "run_url": "https://github.com/LeonaKTH/caseflow-agent/actions/runs/41971026879",
+    "conclusion": "success",
+    "ubuntu_tests_passed": 130,
+    "windows_tests_passed": 130,
+    "sensitive_log_findings": 0
+  }
 }

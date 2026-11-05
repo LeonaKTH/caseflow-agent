@@ -34,4 +34,6 @@
 
 历史32条Mock集已经观察，两组共用忽略Prompt的词法替身；其结果不能证明真实模型收益。历史规则任务12/24与24/24也不能与真实结果混算。原Mock明确60 EUR却实际提交89 EUR的负结果在私有原件保留，后续补上语义保护与独立金额回归。
 
-新的24条独立真实模型任务尚未运行，数据、Gold、冻结评分细节与专项执行器暂不公开；没有新任务成功率。正常Web/Agent的专项真实交互、Linux/远端CI、Docker和生产性能仍未验证。本次公开整理新增真实模型请求0。
+新的24条独立真实模型任务尚未运行，数据、Gold、冻结评分细节与专项执行器暂不公开；没有新任务成功率。正常Web/Agent的专项真实交互、Ubuntu/Windows真实GitHub Actions各130项测试通过，见[首次真实CI：Ubuntu/Windows Python3.13均通过](https://github.com/LeonaKTH/caseflow-agent/actions/runs/41971026879)；macOS、Docker和生产性能仍未验证。本次公开整理新增真实模型请求0。
+
+正式发布CI记录：根提交 `59ff9e1e5cdfc2b6a5c39eae14c68f2a347a74f0`，Ubuntu 130通过（21.92秒）、Windows 130通过（50.53秒），上游11/11及离线示例通过；日志敏感检查通过。该CI没有调用真实模型，不改变两轮冒烟结果。

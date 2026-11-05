@@ -13,6 +13,7 @@
     "observability",
     "llm-evaluation"
   ],
-  "name_availability_checked": false,
-  "repository_created": false
+  "name_availability_checked": true,
+  "repository_created": true,
+  "repository_url": "https://github.com/LeonaKTH/caseflow-agent"
 }

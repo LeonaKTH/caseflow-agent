@@ -25,7 +25,7 @@ flowchart LR
 
 ## 三分钟本地演示
 
-建议 Python 3.13。Windows 环境已实际验证；Linux CI 已配置，其远端运行状态见 [发布检查](docs/PUBLICATION_REPORT.md)。在项目根目录运行：
+建议 Python 3.13。Windows本机验证及[首次真实CI：Ubuntu/Windows Python3.13均通过](https://github.com/LeonaKTH/caseflow-agent/actions/runs/41971026879)；详见[发布检查](docs/PUBLICATION_REPORT.md)。在项目根目录运行：
 
 ```powershell
 python scripts/check_public_snapshot.py --allow-git
