@@ -1,0 +1,1818 @@
+{
+  "kind": "curated-public-projection",
+  "not_raw_complete_records": true,
+  "source_date": "2026-11-05",
+  "provider": "DeepSeek",
+  "model": "deepseek-flash",
+  "data": "synthetic, already-seen smoke tasks only",
+  "provider_actual_cost": null,
+  "removed": [
+    "authorization headers",
+    "request and run identifiers",
+    "tokens used for identity",
+    "host metadata",
+    "full prompts",
+    "raw databases"
+  ],
+  "scope_note": "No rerun, regrading or new independent evaluation data. Original records remain private and unchanged.",
+  "rounds": [
+    {
+      "round": "initial-smoke",
+      "tested_commit": "bd62170",
+      "requests": 17,
+      "input_tokens": 19253,
+      "output_tokens": 677,
+      "results": [
+        {
+          "case": "cancel-a",
+          "strategy": "baseline",
+          "passed_as_originally_recorded": false,
+          "clarifications": 0,
+          "requests": [
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "get_order",
+                "order_id": "1004",
+                "message": "我先查一下订单 1004 的状态。"
+              },
+              "usage": {
+                "prompt_tokens": 1050,
+                "completion_tokens": 29,
+                "total_tokens": 1079,
+                "prompt_cache_hit_tokens": 0,
+                "prompt_cache_miss_tokens": 1050
+              },
+              "elapsed_s": 1.0916874000104144,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "proposal",
+                "proposals": [
+                  {
+                    "action": "cancel",
+                    "order_id": "1004"
+                  }
+                ]
+              },
+              "usage": {
+                "prompt_tokens": 1137,
+                "completion_tokens": 22,
+                "total_tokens": 1159,
+                "prompt_cache_hit_tokens": 896,
+                "prompt_cache_miss_tokens": 241
+              },
+              "elapsed_s": 0.8226219000061974,
+              "error": null
+            }
+          ],
+          "turns": [
+            {
+              "status": "handoff",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "get_order",
+                    "order_id": "1004",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "我先查一下订单 1004 的状态。",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "get_order",
+                  "result": {
+                    "id": "1004",
+                    "total_minor": 2500,
+                    "refunded_minor": 0,
+                    "currency": "EUR",
+                    "status": "processing",
+                    "version": 1
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "proposal",
+                    "tool": null,
+                    "order_id": null,
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": [
+                      {
+                        "action": "cancel",
+                        "order_id": "1004",
+                        "amount": null,
+                        "currency": "EUR",
+                        "full_refund": false
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "sqlite_final": {
+            "target_order": {
+              "id": "1004",
+              "status": "processing",
+              "refunded_minor": 0,
+              "version": 1
+            },
+            "receipts": [],
+            "approvals": [],
+            "tickets": [
+              {
+                "status": "OPEN",
+                "reason": "ORDER_EVIDENCE_REQUIRED"
+              }
+            ]
+          }
+        },
+        {
+          "case": "cancel-a",
+          "strategy": "improved",
+          "passed_as_originally_recorded": true,
+          "clarifications": 0,
+          "requests": [
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "get_order",
+                "order_id": "1004"
+              },
+              "usage": {
+                "prompt_tokens": 867,
+                "completion_tokens": 27,
+                "total_tokens": 894,
+                "prompt_cache_hit_tokens": 0,
+                "prompt_cache_miss_tokens": 867
+              },
+              "elapsed_s": 0.7070401000091806,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "proposal",
+                "action": "cancel",
+                "order_id": "1004",
+                "message": "订单1004当前状态为处理中（尚未发货），可以取消。取消操作需要您确认后才会执行。"
+              },
+              "usage": {
+                "prompt_tokens": 954,
+                "completion_tokens": 43,
+                "total_tokens": 997,
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 186
+              },
+              "elapsed_s": 0.6819476000964642,
+              "error": null
+            }
+          ],
+          "turns": [
+            {
+              "status": "proposal",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "get_order",
+                    "order_id": "1004",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "get_order",
+                  "result": {
+                    "id": "1004",
+                    "total_minor": 2500,
+                    "refunded_minor": 0,
+                    "currency": "EUR",
+                    "status": "processing",
+                    "version": 1
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "proposal",
+                    "tool": null,
+                    "order_id": "1004",
+                    "action": "cancel",
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "订单1004当前状态为处理中（尚未发货），可以取消。取消操作需要您确认后才会执行。",
+                    "proposals": []
+                  }
+                }
+              ]
+            }
+          ],
+          "sqlite_final": {
+            "target_order": {
+              "id": "1004",
+              "status": "cancelled",
+              "refunded_minor": 0,
+              "version": 2
+            },
+            "receipts": [
+              {
+                "order_id": "1004",
+                "action": "cancel",
+                "amount_minor": 0,
+                "currency": "EUR",
+                "simulated": 1
+              }
+            ],
+            "approvals": [],
+            "tickets": []
+          }
+        },
+        {
+          "case": "refund-b",
+          "strategy": "baseline",
+          "passed_as_originally_recorded": false,
+          "clarifications": 0,
+          "requests": [
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "refund_info",
+                "order_id": "1001"
+              },
+              "usage": {
+                "prompt_tokens": 1055,
+                "completion_tokens": 28,
+                "total_tokens": 1083,
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 287
+              },
+              "elapsed_s": 1.1780249000294134,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "proposal",
+                "proposals": [
+                  {
+                    "action": "refund",
+                    "order_id": "1001",
+                    "amount": "60",
+                    "currency": "EUR",
+                    "full_refund": false
+                  }
+                ],
+                "message": "I can propose a partial refund of 60 EUR for order 1001 (eligible; up to 89 EUR remaining). This is a proposal only and needs your confirmation to proceed."
+              },
+              "usage": {
+                "prompt_tokens": 1132,
+                "completion_tokens": 76,
+                "total_tokens": 1208,
+                "prompt_cache_hit_tokens": 896,
+                "prompt_cache_miss_tokens": 236
+              },
+              "elapsed_s": 1.0233221999369562,
+              "error": null
+            }
+          ],
+          "turns": [
+            {
+              "status": "handoff",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "refund_info",
+                    "order_id": "1001",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "refund_info",
+                  "result": {
+                    "order_id": "1001",
+                    "allowed": true,
+                    "reason": "DEMO_RETURN_WINDOW",
+                    "remaining_minor": 8900,
+                    "currency": "EUR",
+                    "policy_version": "demo-eur-v1"
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "proposal",
+                    "tool": null,
+                    "order_id": null,
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "I can propose a partial refund of 60 EUR for order 1001 (eligible; up to 89 EUR remaining). This is a proposal only and needs your confirmation to proceed.",
+                    "proposals": [
+                      {
+                        "action": "refund",
+                        "order_id": "1001",
+                        "amount": "60",
+                        "currency": "EUR",
+                        "full_refund": false
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "sqlite_final": {
+            "target_order": {
+              "id": "1001",
+              "status": "delivered",
+              "refunded_minor": 0,
+              "version": 1
+            },
+            "receipts": [],
+            "approvals": [],
+            "tickets": [
+              {
+                "status": "OPEN",
+                "reason": "ORDER_EVIDENCE_REQUIRED"
+              }
+            ]
+          }
+        },
+        {
+          "case": "refund-b",
+          "strategy": "improved",
+          "passed_as_originally_recorded": true,
+          "clarifications": 0,
+          "requests": [
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "get_order",
+                "order_id": "1001"
+              },
+              "usage": {
+                "prompt_tokens": 872,
+                "completion_tokens": 27,
+                "total_tokens": 899,
+                "prompt_cache_hit_tokens": 640,
+                "prompt_cache_miss_tokens": 232
+              },
+              "elapsed_s": 0.847366200061515,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "refund_info",
+                "order_id": "1001"
+              },
+              "usage": {
+                "prompt_tokens": 969,
+                "completion_tokens": 28,
+                "total_tokens": 997,
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 201
+              },
+              "elapsed_s": 0.7408699999796227,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "proposal",
+                "action": "refund",
+                "order_id": "1001",
+                "amount": "60",
+                "currency": "EUR",
+                "full_refund": false,
+                "message": "I can prepare a refund of 60 EUR (not the full price) for order 1001. This is a proposal only and requires your confirmation before anything is processed."
+              },
+              "usage": {
+                "prompt_tokens": 1045,
+                "completion_tokens": 69,
+                "total_tokens": 1114,
+                "prompt_cache_hit_tokens": 896,
+                "prompt_cache_miss_tokens": 149
+              },
+              "elapsed_s": 1.3445262999739498,
+              "error": null
+            }
+          ],
+          "turns": [
+            {
+              "status": "proposal",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "get_order",
+                    "order_id": "1001",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "get_order",
+                  "result": {
+                    "id": "1001",
+                    "total_minor": 8900,
+                    "refunded_minor": 0,
+                    "currency": "EUR",
+                    "status": "delivered",
+                    "version": 1
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "refund_info",
+                    "order_id": "1001",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "refund_info",
+                  "result": {
+                    "order_id": "1001",
+                    "allowed": true,
+                    "reason": "DEMO_RETURN_WINDOW",
+                    "remaining_minor": 8900,
+                    "currency": "EUR",
+                    "policy_version": "demo-eur-v1"
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "proposal",
+                    "tool": null,
+                    "order_id": "1001",
+                    "action": "refund",
+                    "amount": "60",
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "I can prepare a refund of 60 EUR (not the full price) for order 1001. This is a proposal only and requires your confirmation before anything is processed.",
+                    "proposals": []
+                  }
+                }
+              ]
+            }
+          ],
+          "sqlite_final": {
+            "target_order": {
+              "id": "1001",
+              "status": "delivered",
+              "refunded_minor": 6000,
+              "version": 2
+            },
+            "receipts": [
+              {
+                "order_id": "1001",
+                "action": "refund",
+                "amount_minor": 6000,
+                "currency": "EUR",
+                "simulated": 1
+              }
+            ],
+            "approvals": [
+              {
+                "status": "APPROVED",
+                "consumed": 1
+              }
+            ],
+            "tickets": []
+          }
+        },
+        {
+          "case": "fill-slots",
+          "strategy": "baseline",
+          "passed_as_originally_recorded": false,
+          "clarifications": 2,
+          "requests": [
+            {
+              "model_output_json_projection": {
+                "kind": "clarify",
+                "message": "好的，请问您要退哪一笔订单？请提供订单号，以及希望退款的金额（或说明是否全额退款）。"
+              },
+              "usage": {
+                "prompt_tokens": 1042,
+                "completion_tokens": 36,
+                "total_tokens": 1078,
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 274
+              },
+              "elapsed_s": 0.6576466000406072,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "clarify",
+                "message": "好的，订单号是1005。请问您希望退款的金额是多少，还是全额退款？"
+              },
+              "usage": {
+                "prompt_tokens": 1292,
+                "completion_tokens": 29,
+                "total_tokens": 1321,
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 524
+              },
+              "elapsed_s": 0.6624471000395715,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "refund_info",
+                "order_id": "1005"
+              },
+              "usage": {
+                "prompt_tokens": 1524,
+                "completion_tokens": 28,
+                "total_tokens": 1552,
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 756
+              },
+              "elapsed_s": 0.6319483000552282,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "proposals",
+                "proposals": [
+                  {
+                    "action": "refund",
+                    "order_id": "1005",
+                    "amount": "5",
+                    "currency": "EUR",
+                    "full_refund": false
+                  }
+                ],
+                "message": "好的，订单1005退款5 EUR。该订单可退，最高可退18 EUR，5 EUR在范围内。请确认后提交退款申请。"
+              },
+              "usage": {
+                "prompt_tokens": 1601,
+                "completion_tokens": 71,
+                "total_tokens": 1672,
+                "prompt_cache_hit_tokens": 1408,
+                "prompt_cache_miss_tokens": 193
+              },
+              "elapsed_s": 0.7132420999696478,
+              "error": null
+            }
+          ],
+          "turns": [
+            {
+              "status": "clarify",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "clarify",
+                    "tool": null,
+                    "order_id": null,
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "好的，请问您要退哪一笔订单？请提供订单号，以及希望退款的金额（或说明是否全额退款）。",
+                    "proposals": []
+                  }
+                }
+              ]
+            },
+            {
+              "status": "clarify",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "clarify",
+                    "tool": null,
+                    "order_id": null,
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "好的，订单号是1005。请问您希望退款的金额是多少，还是全额退款？",
+                    "proposals": []
+                  }
+                }
+              ]
+            },
+            {
+              "status": "refused",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "refund_info",
+                    "order_id": "1005",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "refund_info",
+                  "result": {
+                    "order_id": "1005",
+                    "allowed": true,
+                    "reason": "DEMO_RETURN_WINDOW",
+                    "remaining_minor": 1800,
+                    "currency": "EUR",
+                    "policy_version": "demo-eur-v1"
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "proposals",
+                    "tool": null,
+                    "order_id": null,
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "好的，订单1005退款5 EUR。该订单可退，最高可退18 EUR，5 EUR在范围内。请确认后提交退款申请。",
+                    "proposals": [
+                      {
+                        "action": "refund",
+                        "order_id": "1005",
+                        "amount": "5",
+                        "currency": "EUR",
+                        "full_refund": false
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "sqlite_final": {
+            "target_order": {
+              "id": "1005",
+              "status": "delivered",
+              "refunded_minor": 0,
+              "version": 1
+            },
+            "receipts": [],
+            "approvals": [],
+            "tickets": []
+          }
+        },
+        {
+          "case": "fill-slots",
+          "strategy": "improved",
+          "passed_as_originally_recorded": true,
+          "clarifications": 2,
+          "requests": [
+            {
+              "model_output_json_projection": {
+                "kind": "clarify",
+                "message": "请提供要退款的订单号，以及退款金额（或说明是否全额退款）。"
+              },
+              "usage": {
+                "prompt_tokens": 859,
+                "completion_tokens": 27,
+                "total_tokens": 886,
+                "prompt_cache_hit_tokens": 640,
+                "prompt_cache_miss_tokens": 219
+              },
+              "elapsed_s": 0.7346002999693155,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "clarify",
+                "message": "请确认：订单号是 1005 吗？另外请提供退款金额，或说明是否全额退款。"
+              },
+              "usage": {
+                "prompt_tokens": 1097,
+                "completion_tokens": 33,
+                "total_tokens": 1130,
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 329
+              },
+              "elapsed_s": 1.114141899975948,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "get_order",
+                "order_id": "1005"
+              },
+              "usage": {
+                "prompt_tokens": 1331,
+                "completion_tokens": 28,
+                "total_tokens": 1359,
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 563
+              },
+              "elapsed_s": 1.3135127000277862,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "proposal",
+                "action": "refund",
+                "order_id": "1005",
+                "amount": "5",
+                "currency": "EUR",
+                "full_refund": false,
+                "message": "已确认订单 1005（Bottle cage，总额 18.00 EUR，已退款 0 EUR）。将提交部分退款 5 EUR 的提案，需您确认后才会执行。"
+              },
+              "usage": {
+                "prompt_tokens": 1426,
+                "completion_tokens": 76,
+                "total_tokens": 1502,
+                "prompt_cache_hit_tokens": 1280,
+                "prompt_cache_miss_tokens": 146
+              },
+              "elapsed_s": 1.1147093999898061,
+              "error": null
+            }
+          ],
+          "turns": [
+            {
+              "status": "clarify",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "clarify",
+                    "tool": null,
+                    "order_id": null,
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "请提供要退款的订单号，以及退款金额（或说明是否全额退款）。",
+                    "proposals": []
+                  }
+                }
+              ]
+            },
+            {
+              "status": "clarify",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "clarify",
+                    "tool": null,
+                    "order_id": null,
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "请确认：订单号是 1005 吗？另外请提供退款金额，或说明是否全额退款。",
+                    "proposals": []
+                  }
+                }
+              ]
+            },
+            {
+              "status": "proposal",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "get_order",
+                    "order_id": "1005",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "get_order",
+                  "result": {
+                    "id": "1005",
+                    "total_minor": 1800,
+                    "refunded_minor": 0,
+                    "currency": "EUR",
+                    "status": "delivered",
+                    "version": 1
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "proposal",
+                    "tool": null,
+                    "order_id": "1005",
+                    "action": "refund",
+                    "amount": "5",
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "已确认订单 1005（Bottle cage，总额 18.00 EUR，已退款 0 EUR）。将提交部分退款 5 EUR 的提案，需您确认后才会执行。",
+                    "proposals": []
+                  }
+                }
+              ]
+            }
+          ],
+          "sqlite_final": {
+            "target_order": {
+              "id": "1005",
+              "status": "delivered",
+              "refunded_minor": 500,
+              "version": 2
+            },
+            "receipts": [
+              {
+                "order_id": "1005",
+                "action": "refund",
+                "amount_minor": 500,
+                "currency": "EUR",
+                "simulated": 1
+              }
+            ],
+            "approvals": [],
+            "tickets": []
+          }
+        }
+      ]
+    },
+    {
+      "round": "v1.2-contract",
+      "tested_commit": "df68336",
+      "requests": 19,
+      "input_tokens": 23917,
+      "output_tokens": 697,
+      "results": [
+        {
+          "case": "cancel-a",
+          "strategy": "baseline",
+          "passed_as_originally_recorded": true,
+          "clarifications": 0,
+          "requests": [
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "get_order",
+                "order_id": "1004"
+              },
+              "usage": {
+                "prompt_tokens": 1143,
+                "completion_tokens": 27,
+                "total_tokens": 1170,
+                "prompt_cache_hit_tokens": 0,
+                "prompt_cache_miss_tokens": 1143
+              },
+              "elapsed_s": 1.1648411999922246,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "proposal",
+                "action": "cancel",
+                "order_id": "1004",
+                "message": "订单1004（雨罩，25.00 EUR）目前状态为处理中、尚未发货，可以取消。请确认是否取消该订单？"
+              },
+              "usage": {
+                "prompt_tokens": 1230,
+                "completion_tokens": 50,
+                "total_tokens": 1280,
+                "prompt_cache_hit_tokens": 1024,
+                "prompt_cache_miss_tokens": 206
+              },
+              "elapsed_s": 0.9142279999796301,
+              "error": null
+            }
+          ],
+          "turns": [
+            {
+              "status": "proposal",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "get_order",
+                    "order_id": "1004",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "get_order",
+                  "result": {
+                    "id": "1004",
+                    "total_minor": 2500,
+                    "refunded_minor": 0,
+                    "currency": "EUR",
+                    "status": "processing",
+                    "version": 1
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "proposal",
+                    "tool": null,
+                    "order_id": "1004",
+                    "action": "cancel",
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "订单1004（雨罩，25.00 EUR）目前状态为处理中、尚未发货，可以取消。请确认是否取消该订单？",
+                    "proposals": []
+                  }
+                }
+              ]
+            }
+          ],
+          "sqlite_final": {
+            "target_order": {
+              "id": "1004",
+              "status": "cancelled",
+              "refunded_minor": 0,
+              "version": 2
+            },
+            "receipts": [
+              {
+                "order_id": "1004",
+                "action": "cancel",
+                "amount_minor": 0,
+                "currency": "EUR",
+                "simulated": 1
+              }
+            ],
+            "approvals": [],
+            "tickets": []
+          }
+        },
+        {
+          "case": "cancel-a",
+          "strategy": "improved",
+          "passed_as_originally_recorded": true,
+          "clarifications": 0,
+          "requests": [
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "get_order",
+                "order_id": "1004"
+              },
+              "usage": {
+                "prompt_tokens": 938,
+                "completion_tokens": 16,
+                "total_tokens": 954,
+                "prompt_cache_hit_tokens": 512,
+                "prompt_cache_miss_tokens": 426
+              },
+              "elapsed_s": 0.9550192999886349,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "proposal",
+                "order_id": "1004",
+                "action": "cancel",
+                "message": "订单1004目前处于处理中（尚未发货），可以为您提交取消申请。取消需经您确认后才会生效。"
+              },
+              "usage": {
+                "prompt_tokens": 1025,
+                "completion_tokens": 45,
+                "total_tokens": 1070,
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 257
+              },
+              "elapsed_s": 1.367313600028865,
+              "error": null
+            }
+          ],
+          "turns": [
+            {
+              "status": "proposal",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "get_order",
+                    "order_id": "1004",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "get_order",
+                  "result": {
+                    "id": "1004",
+                    "total_minor": 2500,
+                    "refunded_minor": 0,
+                    "currency": "EUR",
+                    "status": "processing",
+                    "version": 1
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "proposal",
+                    "tool": null,
+                    "order_id": "1004",
+                    "action": "cancel",
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "订单1004目前处于处理中（尚未发货），可以为您提交取消申请。取消需经您确认后才会生效。",
+                    "proposals": []
+                  }
+                }
+              ]
+            }
+          ],
+          "sqlite_final": {
+            "target_order": {
+              "id": "1004",
+              "status": "cancelled",
+              "refunded_minor": 0,
+              "version": 2
+            },
+            "receipts": [
+              {
+                "order_id": "1004",
+                "action": "cancel",
+                "amount_minor": 0,
+                "currency": "EUR",
+                "simulated": 1
+              }
+            ],
+            "approvals": [],
+            "tickets": []
+          }
+        },
+        {
+          "case": "refund-b",
+          "strategy": "baseline",
+          "passed_as_originally_recorded": true,
+          "clarifications": 0,
+          "requests": [
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "get_order",
+                "order_id": "1001"
+              },
+              "usage": {
+                "prompt_tokens": 1148,
+                "completion_tokens": 23,
+                "total_tokens": 1171,
+                "prompt_cache_hit_tokens": 896,
+                "prompt_cache_miss_tokens": 252
+              },
+              "elapsed_s": 0.8496214000042528,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "refund_info",
+                "order_id": "1001"
+              },
+              "usage": {
+                "prompt_tokens": 1245,
+                "completion_tokens": 28,
+                "total_tokens": 1273,
+                "prompt_cache_hit_tokens": 1024,
+                "prompt_cache_miss_tokens": 221
+              },
+              "elapsed_s": 0.5816331999376416,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "proposal",
+                "order_id": "1001",
+                "action": "refund",
+                "amount": "60",
+                "currency": "EUR",
+                "full_refund": false,
+                "message": "I can propose a partial refund of 60 EUR for order 1001 (Aero commuter helmet). Note: this exceeds the 50 EUR approval threshold, so it may need extra approval. Please confirm to proceed."
+              },
+              "usage": {
+                "prompt_tokens": 1321,
+                "completion_tokens": 79,
+                "total_tokens": 1400,
+                "prompt_cache_hit_tokens": 1152,
+                "prompt_cache_miss_tokens": 169
+              },
+              "elapsed_s": 1.4063321000430733,
+              "error": null
+            }
+          ],
+          "turns": [
+            {
+              "status": "proposal",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "get_order",
+                    "order_id": "1001",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "get_order",
+                  "result": {
+                    "id": "1001",
+                    "total_minor": 8900,
+                    "refunded_minor": 0,
+                    "currency": "EUR",
+                    "status": "delivered",
+                    "version": 1
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "refund_info",
+                    "order_id": "1001",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "refund_info",
+                  "result": {
+                    "order_id": "1001",
+                    "allowed": true,
+                    "reason": "DEMO_RETURN_WINDOW",
+                    "remaining_minor": 8900,
+                    "currency": "EUR",
+                    "policy_version": "demo-eur-v1"
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "proposal",
+                    "tool": null,
+                    "order_id": "1001",
+                    "action": "refund",
+                    "amount": "60",
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "I can propose a partial refund of 60 EUR for order 1001 (Aero commuter helmet). Note: this exceeds the 50 EUR approval threshold, so it may need extra approval. Please confirm to proceed.",
+                    "proposals": []
+                  }
+                }
+              ]
+            }
+          ],
+          "sqlite_final": {
+            "target_order": {
+              "id": "1001",
+              "status": "delivered",
+              "refunded_minor": 6000,
+              "version": 2
+            },
+            "receipts": [
+              {
+                "order_id": "1001",
+                "action": "refund",
+                "amount_minor": 6000,
+                "currency": "EUR",
+                "simulated": 1
+              }
+            ],
+            "approvals": [
+              {
+                "status": "APPROVED",
+                "consumed": 1
+              }
+            ],
+            "tickets": []
+          }
+        },
+        {
+          "case": "refund-b",
+          "strategy": "improved",
+          "passed_as_originally_recorded": true,
+          "clarifications": 0,
+          "requests": [
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "get_order",
+                "order_id": "1001"
+              },
+              "usage": {
+                "prompt_tokens": 943,
+                "completion_tokens": 27,
+                "total_tokens": 970,
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 175
+              },
+              "elapsed_s": 1.0266048000194132,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "proposal",
+                "order_id": "1001",
+                "action": "refund",
+                "amount": "60",
+                "currency": "EUR",
+                "full_refund": false,
+                "message": "I can prepare a partial refund of 60 EUR for order 1001 (not the full amount). This will be submitted as a proposal and requires your confirmation before anything is processed."
+              },
+              "usage": {
+                "prompt_tokens": 1040,
+                "completion_tokens": 71,
+                "total_tokens": 1111,
+                "prompt_cache_hit_tokens": 896,
+                "prompt_cache_miss_tokens": 144
+              },
+              "elapsed_s": 0.9566540999803692,
+              "error": null
+            }
+          ],
+          "turns": [
+            {
+              "status": "proposal",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "get_order",
+                    "order_id": "1001",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "get_order",
+                  "result": {
+                    "id": "1001",
+                    "total_minor": 8900,
+                    "refunded_minor": 0,
+                    "currency": "EUR",
+                    "status": "delivered",
+                    "version": 1
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "proposal",
+                    "tool": null,
+                    "order_id": "1001",
+                    "action": "refund",
+                    "amount": "60",
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "I can prepare a partial refund of 60 EUR for order 1001 (not the full amount). This will be submitted as a proposal and requires your confirmation before anything is processed.",
+                    "proposals": []
+                  }
+                }
+              ]
+            }
+          ],
+          "sqlite_final": {
+            "target_order": {
+              "id": "1001",
+              "status": "delivered",
+              "refunded_minor": 6000,
+              "version": 2
+            },
+            "receipts": [
+              {
+                "order_id": "1001",
+                "action": "refund",
+                "amount_minor": 6000,
+                "currency": "EUR",
+                "simulated": 1
+              }
+            ],
+            "approvals": [
+              {
+                "status": "APPROVED",
+                "consumed": 1
+              }
+            ],
+            "tickets": []
+          }
+        },
+        {
+          "case": "fill-slots",
+          "strategy": "baseline",
+          "passed_as_originally_recorded": true,
+          "clarifications": 2,
+          "requests": [
+            {
+              "model_output_json_projection": {
+                "kind": "clarify",
+                "message": "好的，请问您要退哪一笔订单？请提供订单号，以及希望退款的金额（或说明是否全额退款）。"
+              },
+              "usage": {
+                "prompt_tokens": 1135,
+                "completion_tokens": 36,
+                "total_tokens": 1171,
+                "prompt_cache_hit_tokens": 896,
+                "prompt_cache_miss_tokens": 239
+              },
+              "elapsed_s": 1.2572701000608504,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "get_order",
+                "order_id": "1005"
+              },
+              "usage": {
+                "prompt_tokens": 1382,
+                "completion_tokens": 16,
+                "total_tokens": 1398,
+                "prompt_cache_hit_tokens": 1024,
+                "prompt_cache_miss_tokens": 358
+              },
+              "elapsed_s": 0.678978499956429,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "clarify",
+                "message": "好的，订单1005（水壶架，18.00 EUR，已送达）。请问您希望退多少金额，还是全额退款？"
+              },
+              "usage": {
+                "prompt_tokens": 1477,
+                "completion_tokens": 38,
+                "total_tokens": 1515,
+                "prompt_cache_hit_tokens": 1280,
+                "prompt_cache_miss_tokens": 197
+              },
+              "elapsed_s": 1.1613103999989107,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "get_order",
+                "order_id": "1005"
+              },
+              "usage": {
+                "prompt_tokens": 1618,
+                "completion_tokens": 26,
+                "total_tokens": 1644,
+                "prompt_cache_hit_tokens": 1024,
+                "prompt_cache_miss_tokens": 594
+              },
+              "elapsed_s": 0.6873171998886392,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "refund_info",
+                "order_id": "1005"
+              },
+              "usage": {
+                "prompt_tokens": 1713,
+                "completion_tokens": 28,
+                "total_tokens": 1741,
+                "prompt_cache_hit_tokens": 1536,
+                "prompt_cache_miss_tokens": 177
+              },
+              "elapsed_s": 1.0870695000048727,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "proposal",
+                "order_id": "1005",
+                "action": "refund",
+                "amount": "5",
+                "currency": "EUR",
+                "message": "好的，为订单1005（水壶架）申请退款5 EUR。请确认后提交。"
+              },
+              "usage": {
+                "prompt_tokens": 1789,
+                "completion_tokens": 49,
+                "total_tokens": 1838,
+                "prompt_cache_hit_tokens": 1536,
+                "prompt_cache_miss_tokens": 253
+              },
+              "elapsed_s": 1.0102773000253364,
+              "error": null
+            }
+          ],
+          "turns": [
+            {
+              "status": "clarify",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "clarify",
+                    "tool": null,
+                    "order_id": null,
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "好的，请问您要退哪一笔订单？请提供订单号，以及希望退款的金额（或说明是否全额退款）。",
+                    "proposals": []
+                  }
+                }
+              ]
+            },
+            {
+              "status": "clarify",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "get_order",
+                    "order_id": "1005",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "get_order",
+                  "result": {
+                    "id": "1005",
+                    "total_minor": 1800,
+                    "refunded_minor": 0,
+                    "currency": "EUR",
+                    "status": "delivered",
+                    "version": 1
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "clarify",
+                    "tool": null,
+                    "order_id": null,
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "好的，订单1005（水壶架，18.00 EUR，已送达）。请问您希望退多少金额，还是全额退款？",
+                    "proposals": []
+                  }
+                }
+              ]
+            },
+            {
+              "status": "proposal",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "get_order",
+                    "order_id": "1005",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "get_order",
+                  "result": {
+                    "id": "1005",
+                    "total_minor": 1800,
+                    "refunded_minor": 0,
+                    "currency": "EUR",
+                    "status": "delivered",
+                    "version": 1
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "refund_info",
+                    "order_id": "1005",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "refund_info",
+                  "result": {
+                    "order_id": "1005",
+                    "allowed": true,
+                    "reason": "DEMO_RETURN_WINDOW",
+                    "remaining_minor": 1800,
+                    "currency": "EUR",
+                    "policy_version": "demo-eur-v1"
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "proposal",
+                    "tool": null,
+                    "order_id": "1005",
+                    "action": "refund",
+                    "amount": "5",
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "好的，为订单1005（水壶架）申请退款5 EUR。请确认后提交。",
+                    "proposals": []
+                  }
+                }
+              ]
+            }
+          ],
+          "sqlite_final": {
+            "target_order": {
+              "id": "1005",
+              "status": "delivered",
+              "refunded_minor": 500,
+              "version": 2
+            },
+            "receipts": [
+              {
+                "order_id": "1005",
+                "action": "refund",
+                "amount_minor": 500,
+                "currency": "EUR",
+                "simulated": 1
+              }
+            ],
+            "approvals": [],
+            "tickets": []
+          }
+        },
+        {
+          "case": "fill-slots",
+          "strategy": "improved",
+          "passed_as_originally_recorded": false,
+          "clarifications": 2,
+          "requests": [
+            {
+              "model_output_json_projection": {
+                "kind": "clarify",
+                "message": "请提供要退款的订单号，以及希望退款的金额（或说明是否全额退款）。"
+              },
+              "usage": {
+                "prompt_tokens": 930,
+                "completion_tokens": 29,
+                "total_tokens": 959,
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 162
+              },
+              "elapsed_s": 1.222414700081572,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "tool",
+                "tool": "get_order",
+                "order_id": "1005"
+              },
+              "usage": {
+                "prompt_tokens": 1166,
+                "completion_tokens": 16,
+                "total_tokens": 1182,
+                "prompt_cache_hit_tokens": 896,
+                "prompt_cache_miss_tokens": 270
+              },
+              "elapsed_s": 0.8574311999836937,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "clarify",
+                "message": "订单 1005 已找到（Bottle cage，总额 18.00 EUR，已送达）。请确认退款金额，或说明是否全额退款。"
+              },
+              "usage": {
+                "prompt_tokens": 1261,
+                "completion_tokens": 42,
+                "total_tokens": 1303,
+                "prompt_cache_hit_tokens": 1024,
+                "prompt_cache_miss_tokens": 237
+              },
+              "elapsed_s": 0.8426111999433488,
+              "error": null
+            },
+            {
+              "model_output_json_projection": {
+                "kind": "proposal",
+                "order_id": "1005",
+                "action": "refund",
+                "amount": "5",
+                "currency": "EUR",
+                "message": "已为订单 1005 准备 5 EUR 的退款提案，需您确认后才会执行。"
+              },
+              "usage": {
+                "prompt_tokens": 1413,
+                "completion_tokens": 51,
+                "total_tokens": 1464,
+                "prompt_cache_hit_tokens": 896,
+                "prompt_cache_miss_tokens": 517
+              },
+              "elapsed_s": 0.9129379999358207,
+              "error": null
+            }
+          ],
+          "turns": [
+            {
+              "status": "clarify",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "clarify",
+                    "tool": null,
+                    "order_id": null,
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "请提供要退款的订单号，以及希望退款的金额（或说明是否全额退款）。",
+                    "proposals": []
+                  }
+                }
+              ]
+            },
+            {
+              "status": "clarify",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "tool",
+                    "tool": "get_order",
+                    "order_id": "1005",
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "",
+                    "proposals": []
+                  }
+                },
+                {
+                  "kind": "tool_result",
+                  "tool": "get_order",
+                  "result": {
+                    "id": "1005",
+                    "total_minor": 1800,
+                    "refunded_minor": 0,
+                    "currency": "EUR",
+                    "status": "delivered",
+                    "version": 1
+                  }
+                },
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "clarify",
+                    "tool": null,
+                    "order_id": null,
+                    "action": null,
+                    "amount": null,
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "订单 1005 已找到（Bottle cage，总额 18.00 EUR，已送达）。请确认退款金额，或说明是否全额退款。",
+                    "proposals": []
+                  }
+                }
+              ]
+            },
+            {
+              "status": "handoff",
+              "events": [
+                {
+                  "kind": "planner_decision",
+                  "decision": {
+                    "kind": "proposal",
+                    "tool": null,
+                    "order_id": "1005",
+                    "action": "refund",
+                    "amount": "5",
+                    "currency": "EUR",
+                    "full_refund": false,
+                    "message": "已为订单 1005 准备 5 EUR 的退款提案，需您确认后才会执行。",
+                    "proposals": []
+                  }
+                }
+              ]
+            }
+          ],
+          "sqlite_final": {
+            "target_order": {
+              "id": "1005",
+              "status": "delivered",
+              "refunded_minor": 0,
+              "version": 1
+            },
+            "receipts": [],
+            "approvals": [],
+            "tickets": [
+              {
+                "status": "OPEN",
+                "reason": "ORDER_EVIDENCE_REQUIRED"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "suggested_repository_name": "caseflow-agent",
+  "description": "Auditable customer-support AI agent with HTTP tools, structured decisions, human approvals, durable receipts, and honest LLM evaluation.",
+  "topics": [
+    "python",
+    "ai-agent",
+    "llm",
+    "fastapi",
+    "langgraph",
+    "human-in-the-loop",
+    "sqlite",
+    "idempotency",
+    "observability",
+    "llm-evaluation"
+  ],
+  "name_availability_checked": false,
+  "repository_created": false
+}

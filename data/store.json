@@ -1,0 +1,21 @@
+{
+  "demo_today": "2025-10-01",
+  "customers": {
+    "C100": { "name": "Lena Fischer", "email": "lena@example.com" },
+    "C200": { "name": "Tom Berg", "email": "tom@example.com" }
+  },
+  "orders": [
+    { "id": "1001", "customer_id": "C100", "item": "Aero commuter helmet", "total": "89.00", "currency": "EUR",
+      "status": "delivered", "ordered": "2025-09-15", "delivered": "2025-09-20", "tracking": "TRK-55120" },
+    { "id": "1002", "customer_id": "C100", "item": "Nordwind City e-bike", "total": "2450.00", "currency": "EUR",
+      "status": "shipped", "ordered": "2025-09-26", "tracking": "TRK-88213", "eta": "2025-10-03" },
+    { "id": "1003", "customer_id": "C100", "item": "Folding bike lock", "total": "35.00", "currency": "EUR",
+      "status": "delivered", "ordered": "2025-07-02", "delivered": "2025-07-10", "tracking": "TRK-40077" },
+    { "id": "1004", "customer_id": "C100", "item": "Rain cover", "total": "25.00", "currency": "EUR",
+      "status": "processing", "ordered": "2025-09-30" },
+    { "id": "1005", "customer_id": "C100", "item": "Bottle cage", "total": "18.00", "currency": "EUR",
+      "status": "delivered", "ordered": "2025-09-18", "delivered": "2025-09-22", "tracking": "TRK-55190" },
+    { "id": "2001", "customer_id": "C200", "item": "Pannier bags", "total": "120.00", "currency": "EUR",
+      "status": "delivered", "ordered": "2025-09-19", "delivered": "2025-09-25", "tracking": "TRK-61002" }
+  ]
+}

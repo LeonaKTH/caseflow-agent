@@ -1,0 +1,52 @@
+{
+  "snapshot_base_commit": "28437c437705ecc23b543ef573b50483b69cff6b",
+  "snapshot_adaptations": "Packaging fixture lookup; optional Git provenance only. Business and historical scoring logic unchanged.",
+  "platform": "Windows / Python 3.13.2",
+  "tests": {
+    "passed": 130,
+    "failed": 0,
+    "skipped": 0,
+    "duration_s": "160.02",
+    "source_private_development_count": 147,
+    "withheld_dependent_tests": 17
+  },
+  "clean_install": true,
+  "isolated_from_system_site_packages": true,
+  "dependency_check": true,
+  "ruff_check": true,
+  "ruff_format_check": true,
+  "runtime": {
+    "clean_environment": true,
+    "wheel_import_outside_source_tree": true,
+    "packaged_demo_data": true,
+    "upstream_scenarios": "11/11",
+    "legacy_demo_restart_and_replay": true,
+    "historical_mock_runner": "one historical dev task / both strategies executed; not a new independent benchmark",
+    "web_cli_started": true,
+    "html_js_css_http_200": true,
+    "real_loopback_http_refund_cancel_approval": true,
+    "sqlite_receipts": [
+      [
+        "1001",
+        "refund",
+        6000
+      ],
+      [
+        "1004",
+        "cancel",
+        0
+      ]
+    ],
+    "approval_consumed": true,
+    "ticket_resolved_and_followup": true,
+    "identity_tokens_absent_from_trace": true,
+    "provider_requests": 0,
+    "browser_clicks_tested_this_snapshot": false,
+    "linux_remote_ci": "not-verified"
+  },
+  "upstream_license_preserved": true,
+  "new_real_model_requests": 0,
+  "raw_xml_logs_databases_published": false,
+  "unrun_independent_tasks_published": false,
+  "remote_ci": "not-verified"
+}

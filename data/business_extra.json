@@ -1,0 +1,5 @@
+{"version":"support-demo-v1","orders":[
+ {"id":"1006","owner":"C100","total":"28.00","status":"processing","ordered":"2025-09-29","item":"Rain cover / 雨罩（备用）"},
+ {"id":"1007","owner":"C100","total":"60.00","status":"shipped","ordered":"2025-09-28","item":"Wheel lights / 车灯（物流调查）"},
+ {"id":"3001","owner":"C300","total":"42.00","status":"delivered","ordered":"2025-09-20","delivered":"2025-09-24","item":"Cycling gloves / 骑行手套"}
+]}

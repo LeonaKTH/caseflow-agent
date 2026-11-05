@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.local/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+*.db
+*.db-*
+*.sqlite*
+*.dpapi
+*.log
+*.xml
+*.safetensors
+*.pt
+# Unrun independent evaluation data and scoring remain private.
+data/independent_*
+src/caseflow/independent_*
+tests/caseflow/test_independent_*

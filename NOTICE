@@ -1,0 +1,9 @@
+CaseFlow — Reliable Customer Support Agent
+
+Based on nitanandsinghupw/langgraph-support-agent (MIT).
+Upstream commit: b6fe9faebff8a1af549ae7b8cabcb0b6e6479cec
+Copyright (c) 2026 Nitanand Singh. The original LICENSE is retained.
+
+Original support_agent modules, data and tests remain attributed to upstream.
+The caseflow package and its new tests are additions; see UPSTREAM_CHANGES.md.
+No real merchant, payment provider or production deployment is represented.

@@ -1,0 +1,41 @@
+name: public-snapshot-ci
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ['3.13']
+    env:
+      PYTHONUTF8: '1'
+      LANGSMITH_TRACING: 'false'
+      SUPPORT_MODEL_PROVIDER: offline
+      CASEFLOW_ALLOW_PAID: '0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Check public source before generating runtime files
+        run: python scripts/check_public_snapshot.py --allow-git
+      - name: Install locked dependencies
+        run: python -m pip install -r requirements-lock.txt
+      - name: Dependency and style checks
+        run: |
+          python -m pip check
+          python -m ruff check src/caseflow tests/caseflow scripts
+          python -m ruff format --check src/caseflow tests/caseflow scripts
+      - name: Core and upstream regression
+        run: python -m pytest -q -p no:cacheprovider
+      - name: Offline examples
+        run: |
+          python -m support_agent.evaluate
+          python -m caseflow demo
+          python -m caseflow.agent_eval --mode mock --split dev --strategy both --output .local/ci-mock.json
